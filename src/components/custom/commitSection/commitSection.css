@@ -10,3 +10,8 @@
   border: 1px solid grey;
   border-radius: 10px;
 }
+
+.commit-table_wrapper {
+  max-height: 82vh;
+  overflow: auto;
+}

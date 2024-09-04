@@ -48,7 +48,7 @@ const Main = () => {
   return (
     <>
       <div className="main">
-        <div>
+        <div className="main-heading-wrapper">
           <Label className="main-heading">Commit Finder</Label>
         </div>
         <div className="main_wrapper">

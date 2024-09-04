@@ -37,4 +37,11 @@ body {
   .main_wrapper {
     flex-direction: column;
   }
+  .main_right {
+    max-height: none;
+  }
+
+  .main-heading-wrapper {
+    text-align: center;
+  }
 }

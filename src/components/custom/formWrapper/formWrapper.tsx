@@ -28,7 +28,7 @@ const FormWrapper = (props: IProps) => {
         <div className="form-description">
           <Label>Find commits for a given repository between date range</Label>
         </div>
-        <div>
+        <div className="form-field">
           <div>
             <Label>Start Date</Label>
           </div>
@@ -40,7 +40,7 @@ const FormWrapper = (props: IProps) => {
             />
           </div>
         </div>
-        <div>
+        <div className="form-field">
           <div>
             <Label>End Date</Label>
           </div>
@@ -52,7 +52,7 @@ const FormWrapper = (props: IProps) => {
             />
           </div>
         </div>
-        <div>
+        <div className="form-field">
           <div>
             <Label>Repositories</Label>
           </div>
