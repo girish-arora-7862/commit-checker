@@ -31,7 +31,7 @@ const CommitSection = (props: IProps) => {
             <div>
               <Label className="commit-title">Commits Found</Label>
             </div>
-            <div className="commit-table_wrapper">
+            <div className="commit-table-wrapper">
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -59,14 +59,5 @@ const CommitSection = (props: IProps) => {
     </>
   );
 };
-
-// Table,
-// TableHeader,
-// TableBody,
-// TableFooter,
-// TableHead,
-// TableRow,
-// TableCell,
-// TableCaption,
 
 export default CommitSection;

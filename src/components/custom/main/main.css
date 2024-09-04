@@ -1,12 +1,12 @@
-.main_wrapper {
+.main-wrapper {
   display: flex;
 }
 
-.main_left {
+.main-left {
   flex: 1;
 }
 
-.main_right {
+.main-right {
   flex: 3;
   max-height: calc(100vh - 66px);
 }
@@ -34,10 +34,10 @@ body {
 }
 
 @media only screen and (max-width: 782px) {
-  .main_wrapper {
+  .main-wrapper {
     flex-direction: column;
   }
-  .main_right {
+  .main-right {
     max-height: none;
   }
 

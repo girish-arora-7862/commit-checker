@@ -6,9 +6,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_DATA } from "./constant";
 import { ICommitData, IFormData } from "@/types/common";
+import { useToast } from "@/components/ui/use-toast";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Main = () => {
+  const { toast } = useToast();
   const [data, setData] = useState<ICommitData[]>([]);
+
   const fetchCommits = async (formData: IFormData) => {
     let endDate = new Date(formData.endDate);
     endDate.setDate(endDate.getDate() + 1);
@@ -23,25 +27,22 @@ const Main = () => {
       });
       const data = result.data;
 
-      //   const data = API_DATA;
-      console.log({ data });
-      const mappedData: ICommitData[] = data.map((current: any) => {
-        return {
-          date: current.commit.committer.date ?? "",
-          author: current.commit.author.name ?? "",
-          link: current.html_url ?? "",
-        };
-      });
-      console.log("mappedData", mappedData);
+      const mappedData: ICommitData[] = data.map((current: any) => ({
+        date: current.commit.committer.date ?? "",
+        author: current.commit.author.name ?? "",
+        link: current.html_url ?? "",
+      }));
       setData(mappedData);
-      //   console.log(data, data2);
-      //   console.log(JSON.stringify(data) === JSON.stringify(data2));
-    } catch (error) {}
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to fetch data",
+      });
+    }
   };
 
-  useEffect(() => {}, []);
-
   const handleSubmit = (formData: IFormData) => {
+    setData([]);
     fetchCommits(formData);
   };
 
@@ -51,11 +52,11 @@ const Main = () => {
         <div className="main-heading-wrapper">
           <Label className="main-heading">Commit Finder</Label>
         </div>
-        <div className="main_wrapper">
-          <div className="main_left">
+        <div className="main-wrapper">
+          <div className="main-left">
             <FormWrapper onSubmit={handleSubmit} />
           </div>
-          <div className="main_right">
+          <div className="main-right">
             <CommitSection data={data} />
           </div>
         </div>

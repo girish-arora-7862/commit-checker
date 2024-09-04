@@ -19,6 +19,40 @@ const FormWrapper = (props: IProps) => {
     onSubmit({ startDate, endDate, repoName });
   };
 
+  const today = new Date().toISOString().slice(0, 10);
+
+  let startMin = "";
+  if (endDate) {
+    let endDateMinus30 = new Date(endDate);
+    endDateMinus30.setDate(endDateMinus30.getDate() - 29);
+    let endDateMinus30String = endDateMinus30.toISOString().slice(0, 10);
+    startMin = endDateMinus30String;
+    if (new Date(endDateMinus30String) > new Date(today)) {
+      startMin = today;
+    }
+  }
+
+  let startMax = today;
+  if (endDate) {
+    startMax = new Date(endDate).toISOString().slice(0, 10);
+  }
+
+  let endMin = "";
+  if (startDate) {
+    endMin = new Date(startDate).toISOString().slice(0, 10);
+  }
+
+  let endMax = today;
+  if (startDate) {
+    let startDatePlus30 = new Date(startDate);
+    startDatePlus30.setDate(startDatePlus30.getDate() + 29);
+    let startDatePlus30String = startDatePlus30.toISOString().slice(0, 10);
+    endMax = startDatePlus30String;
+    if (new Date(startDatePlus30String) > new Date(today)) {
+      endMax = today;
+    }
+  }
+
   return (
     <>
       <div className="form-wrapper">
@@ -37,6 +71,8 @@ const FormWrapper = (props: IProps) => {
               type="date"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
+              min={startMin}
+              max={startMax}
             />
           </div>
         </div>
@@ -49,6 +85,8 @@ const FormWrapper = (props: IProps) => {
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
+              min={endMin}
+              max={endMax}
             />
           </div>
         </div>
